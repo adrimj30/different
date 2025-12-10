@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carta Different Burguer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
+    header { position: relative; background: url('https://via.placeholder.com/1200x320.png?text=Different+Burguer') no-repeat center; background-size: cover; height: 280px; display: flex; align-items: center; justify-content: center; }
+    header .overlay { background-color: rgba(192,57,43,0.85); padding: 24px 32px; text-align: center; border-radius: 10px; }
+    header h1 { font-size: 36px; margin: 0; color: #fff; }
+    header p { font-size: 14px; margin-top: 8px; color: #f4f4f4; }
+
+    .top-controls { text-align: center; margin: 16px; }
+    .btn { padding: 6px 12px; background-color: #c0392b; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    .btn:hover { background-color: #a93226; }
+
+    .tabs { display: flex; flex-wrap: wrap; justify-content: center; background: #c0392b; }
+    .tabs button { flex: 1; min-width: 120px; padding: 12px; border: none; background: #c0392b; color: #fff; cursor: pointer; font-weight: bold; }
+    .tabs button:hover { background: #a93226; }
+    .tabs button.active { background: #e74c3c; }
+
+    .tab-content { display: none; padding: 20px; max-width: 900px; margin: auto; }
+    .tab-content.active { display: block; }
+
+    .plato { display: flex; justify-content: space-between; align-items: center; margin: 10px 0; gap: 8px; flex-wrap: wrap; }
+    .nombre { font-weight: 600; }
+    .price { color: #27ae60; font-weight: 700; margin-left: auto; }
+    .foto { display: none; margin-top: 8px; width: 260px; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.18); }
+
+    footer { background-color: #f4f4f4; text-align: center; padding: 18px; font-size: 13px; color: #555; }
+
+    @media print {
+      .btn, .top-controls, header, .tabs { display: none !important; }
+      .foto { display: block !important; }
+      .tab-content { display: block !important; }
+    }
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.columna {
+  width: 140px;        /* Ajusta si quieres más/menos ancho */
+  height: auto;
+  object-fit: contain; /* Mantiene proporción sin recortes */
+}
+
+.contenido {
+  flex: 1;
+  max-width: 900px;    /* Mantén tu ancho de carta */
+}
+
+/* Ajuste responsivo: oculta columnas en móviles estrechos */
+@media (max-width: 1024px) {
+  .columna { display: none; }
+  .contenido { max-width: 100%; }
+}
+
+/* Impresión: muestra columnas y contenido limpio */
+@media print {
+  .layout { gap: 0; }
+  .columna { display: block; width: 120px; }
+  .btn, .top-controls, .tabs { display: none !important; }
+  .foto { display: block !important; }
+  .tab-content { display: block !important; }
+}
+
+    
+  </style>
+  <script>
+    function openTab(evt, tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(c => c.classList.remove('active'));
+      const tabs = document.querySelectorAll('.tabs button');
+      tabs.forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+    function toggleImage(id) {
+      const img = document.getElementById(id);
+      if (!img) return;
+      img.style.display = (img.style.display === 'block') ? 'none' : 'block';
+    }
+    function toggleAll() {
+      const fotos = document.querySelectorAll('.foto');
+      const anyHidden = Array.from(fotos).some(img => {
+        const current = img.style.display || getComputedStyle(img).display;
+        return current === 'none';
+      });
+      fotos.forEach(img => img.style.display = anyHidden ? 'block' : 'none');
+      const btn = document.getElementById('toggleAllBtn');
+      if (btn) btn.innerText = anyHidden ? 'Ocultar todas las fotos' : 'Mostrar todas las fotos';
+    }
+  </script>
+</head>
+<body>
+
+  <div class="layout">
+    <img src="imagenes/cizquierda.png" alt="Columna izquierda" class="columna">
+<div class="contenido">
+  <header>
+    <div class="overlay">
+      <h1>🍔 Different Burguer</h1>
+      <p>Avenida Intergolf, 5 · Illescas</p>
+    </div>
+  </header>
+
+  <div class="top-controls">
+    <button id="toggleAllBtn" class="btn" onclick="toggleAll()">Mostrar todas las fotos</button>
+  </div>
+
+  <div class="tabs">
+    <button class="active" onclick="openTab(event,'croissants')">Croissants</button>
+    <button onclick="openTab(event,'hamburguesas')">Hamburguesas</button>
+    <button onclick="openTab(event,'bocadillos')">Bocadillos</button>
+    <button onclick="openTab(event,'perritos')">Perritos</button>
+    <button onclick="openTab(event,'ensaladas')">Ensaladas</button>
+    <button onclick="openTab(event,'costillas')">Costillas</button>
+    <button onclick="openTab(event,'infantil')">Menú Infantil</button>
+    <button onclick="openTab(event,'postres')">Postres</button>
+    <button onclick="openTab(event,'helados')">Helados</button>
+    <button onclick="openTab(event,'bebidas')">Bebidas</button>
+  </div>
+
+  <!-- CROISSANTS -->
+<div id="croissants" class="tab-content active">
+    <h2>Croissants</h2>
+    <div class="plato"><span class="nombre">Croissant Mix Vegetal (1-2 personas)</span><span class="price">29,70 €</span><button class="btn" onclick="toggleImage('c1')">Ver foto</button></div>
+    <img id="c1" class="foto" src="imagenes/croissant-vegetal.jpg" alt="">
+    <div class="plato"><span class="nombre">Croissant Mix Vegetal (3-6 personas)</span><span class="price">45,30 €</span><button class="btn" onclick="toggleImage('c2')">Ver foto</button></div>
+  <img id="c2" class="foto" src="imagenes/croissant-vegetal.jpg" alt="">
+    <div class="plato"><span class="nombre">Croissant de Pollo (1-2 personas)</span><span class="price">29,70 €</span><button class="btn" onclick="toggleImage('c3')">Ver foto</button></div>
+  <img id="c3" class="foto" src="imagenes/croissant-pollo.jpg" alt="">
+    <div class="plato"><span class="nombre">Croissant de Pollo (3-6 personas)</span><span class="price">45,30 €</span><button class="btn" onclick="toggleImage('c4')">Ver foto</button></div>
+  <img id="c4" class="foto" src="imagenes/croissant-pollo.jpg" alt="">
+    <div class="plato"><span class="nombre">Croissant de Pollo y Bacon (1-2 personas)</span><span class="price">29,70 €</span><button class="btn" onclick="toggleImage('c5')">Ver foto</button></div>
+  <img id="c5" class="foto" src="imagenes/croissant-pollo-bacon.jpg" alt="">
+    <div class="plato"><span class="nombre">Croissant de Pollo y Bacon (3-6 personas)</span><span class="price">45,30 €</span><button class="btn" onclick="toggleImage('c6')">Ver foto</button></div>
+  <img id="c6" class="foto" src="imagenes/croissant-pollo-bacon.jpg" alt="">
+    <div class="plato"><span class="nombre">Croissant de Bacon (1-3 personas)</span><span class="price">29,70 €</span><button class="btn" onclick="toggleImage('c7')">Ver foto</button></div>
+  <img id="c7" class="foto" src="imagenes/croissant-bacon.jpg" alt="">
+    <div class="plato"><span class="nombre">Croissant de Bacon (3-6 personas)</span><span class="price">45,30 €</span><button class="btn" onclick="toggleImage('c8')">Ver foto</button></div>
+  <img id="c8" class="foto" src="imagenes/croissant-bacon.jpg" alt="">
+
+  </div>
+
+  <!-- HAMBURGUESAS -->
+<div id="hamburguesas" class="tab-content">
+  <h2>Hamburguesas</h2>
+
+  <div class="plato"><span class="nombre">La Normal</span><span class="price">8,80 €</span><button class="btn" onclick="toggleImage('h1')">Ver foto</button></div>
+  <img id="h1" class="foto" src="imagenes/hamburguesa-normal.jpg" alt="La Normal">
+
+  <div class="plato"><span class="nombre">La Especial</span><span class="price">8,80 €</span><button class="btn" onclick="toggleImage('h2')">Ver foto</button></div>
+  <img id="h2" class="foto" src="imagenes/hamburguesa-especial.jpg" alt="La Especial">
+
+  <div class="plato"><span class="nombre">La Doble Especial</span><span class="price">Precio superior</span><button class="btn" onclick="toggleImage('h3')">Ver foto</button></div>
+  <img id="h3" class="foto" src="imagenes/hamburguesa-doble-especial.jpg" alt="La Doble Especial">
+
+  <div class="plato"><span class="nombre">La Mixta</span><span class="price">9,45 €</span><button class="btn" onclick="toggleImage('h4')">Ver foto</button></div>
+  <img id="h4" class="foto" src="imagenes/hamburguesa-mixta.jpg" alt="La Mixta">
+
+  <div class="plato"><span class="nombre">La Doble Mixta</span><span class="price">Precio superior</span><button class="btn" onclick="toggleImage('h5')">Ver foto</button></div>
+  <img id="h5" class="foto" src="imagenes/hamburguesa-doble-mixta.jpg" alt="La Doble Mixta">
+
+  <div class="plato"><span class="nombre">La Onion</span><span class="price">9-10 €</span><button class="btn" onclick="toggleImage('h6')">Ver foto</button></div>
+  <img id="h6" class="foto" src="imagenes/hamburguesa-onion.jpg" alt="La Onion">
+
+  <div class="plato"><span class="nombre">La Barbacoa</span><span class="price">9-10 €</span><button class="btn" onclick="toggleImage('h7')">Ver foto</button></div>
+  <img id="h7" class="foto" src="imagenes/hamburguesa-barbacoa.jpg" alt="La Barbacoa">
+
+  <div class="plato"><span class="nombre">La Caramelizada</span><span class="price">9-10 €</span><button class="btn" onclick="toggleImage('h8')">Ver foto</button></div>
+  <img id="h8" class="foto" src="imagenes/hamburguesa-caramelizada.jpg" alt="La Caramelizada">
+
+  <div class="plato"><span class="nombre">La Queso de Cabra</span><span class="price">10,15 €</span><button class="btn" onclick="toggleImage('h9')">Ver foto</button></div>
+  <img id="h9" class="foto" src="imagenes/hamburguesa-queso-cabra.jpg" alt="La Queso de Cabra">
+
+  <div class="plato"><span class="nombre">La Champi</span><span class="price">9-10 €</span><button class="btn" onclick="toggleImage('h10')">Ver foto</button></div>
+  <img id="h10" class="foto" src="imagenes/hamburguesa-champi.jpg" alt="La Champi">
+
+  <div class="plato"><span class="nombre">La Jack Daniel’s (250 g)</span><span class="price">12,35 €</span><button class="btn" onclick="toggleImage('h11')">Ver foto</button></div>
+  <img id="h11" class="foto" src="imagenes/hamburguesa-jackdaniels.jpg" alt="La Jack Daniel’s">
+</div>
+
+
+ <!-- BOCADILLOS -->
+<div id="bocadillos" class="tab-content">
+  <h2>Bocadillos</h2>
+
+  <div class="plato"><span class="nombre">Bocadillo de pollo crujiente</span><span class="price">6-9 €</span><button class="btn" onclick="toggleImage('b1')">Ver foto</button></div>
+  <img id="b1" class="foto" src="imagenes/bocadillo-pollo.jpg" alt="Bocadillo de pollo crujiente">
+
+  <div class="plato"><span class="nombre">Bocadillo de bacon y queso</span><span class="price">6-9 €</span><button class="btn" onclick="toggleImage('b2')">Ver foto</button></div>
+  <img id="b2" class="foto" src="imagenes/bocadillo-bacon-queso.jpg" alt="Bocadillo de bacon y queso">
+
+  <div class="plato"><span class="nombre">Bocadillo mixto (jamón york y queso)</span><span class="price">6-9 €</span><button class="btn" onclick="toggleImage('b3')">Ver foto</button></div>
+  <img id="b3" class="foto" src="imagenes/bocadillo-mixto.jpg" alt="Bocadillo mixto">
+
+  <div class="plato"><span class="nombre">Bocadillo vegetal</span><span class="price">6-9 €</span><button class="btn" onclick="toggleImage('b4')">Ver foto</button></div>
+  <img id="b4" class="foto" src="imagenes/bocadillo-vegetal.jpg" alt="Bocadillo vegetal">
+</div>
+
+  <!-- PERRITOS -->
+<div id="perritos" class="tab-content">
+  <h2>Perritos</h2>
+
+  <div class="plato">
+    <span class="nombre">Perrito clásico</span>
+    <span class="price">6,50 €</span>
+    <button class="btn" onclick="toggleImage('p1')">Ver foto</button>
+  </div>
+  <img id="p1" class="foto" src="imagenes/perrito-clasico.jpg" alt="Perrito clásico">
+
+  <div class="plato">
+    <span class="nombre">Perrito doble gigante</span>
+    <span class="price">Precio superior</span>
+    <button class="btn" onclick="toggleImage('p2')">Ver foto</button>
+  </div>
+  <img id="p2" class="foto" src="imagenes/perrito-doble.jpg" alt="Perrito doble gigante">
+</div>
+
+ <!-- ENSALADAS -->
+<div id="ensaladas" class="tab-content">
+  <h2>Ensaladas</h2>
+
+  <div class="plato">
+    <span class="nombre">Ensalada mixta</span>
+    <span class="price">7-9 €</span>
+    <button class="btn" onclick="toggleImage('e1')">Ver foto</button>
+  </div>
+  <img id="e1" class="foto" src="imagenes/ensalada-mixta.jpg" alt="Ensalada mixta">
+
+  <div class="plato">
+    <span class="nombre">Ensalada de pollo crujiente</span>
+    <span class="price">7-9 €</span>
+    <button class="btn" onclick="toggleImage('e2')">Ver foto</button>
+  </div>
+  <img id="e2" class="foto" src="imagenes/ensalada-pollo.jpg" alt="Ensalada de pollo crujiente">
+
+  <div class="plato">
+    <span class="nombre">Ensalada de queso de cabra</span>
+    <span class="price">7-9 €</span>
+    <button class="btn" onclick="toggleImage('e3')">Ver foto</button>
+  </div>
+  <img id="e3" class="foto" src="imagenes/ensalada-queso-cabra.jpg" alt="Ensalada de queso de cabra">
+</div>
+
+<!-- COSTILLAS -->
+<div id="costillas" class="tab-content">
+  <h2>Costillas</h2>
+
+  <div class="plato">
+    <span class="nombre">Costillas con arroz y patatas</span>
+    <span class="price">12-14 €</span>
+    <button class="btn" onclick="toggleImage('co1')">Ver foto</button>
+  </div>
+  <img id="co1" class="foto" src="imagenes/costillas.jpg" alt="Costillas con arroz y patatas">
+</div>
+<!-- MENÚ INFANTIL -->
+<div id="infantil" class="tab-content">
+  <h2>Menú Infantil</h2>
+
+  <div class="plato">
+    <span class="nombre">Hamburguesa infantil (120 g con queso, patatas y refresco)</span>
+    <span class="price">6,50 €</span>
+    <button class="btn" onclick="toggleImage('i1')">Ver foto</button>
+  </div>
+  <img id="i1" class="foto" src="imagenes/hamburguesa-infantil.jpg" alt="Hamburguesa infantil">
+
+  <div class="plato">
+    <span class="nombre">Perrito infantil (con patatas y refresco)</span>
+    <span class="price">6,50 €</span>
+    <button class="btn" onclick="toggleImage('i2')">Ver foto</button>
+  </div>
+  <img id="i2" class="foto" src="imagenes/perrito-infantil.jpg" alt="Perrito infantil">
+
+  <div class="plato">
+    <span class="nombre">Sándwich mixto infantil (jamón york y queso, patatas y refresco)</span>
+    <span class="price">6,50 €</span>
+    <button class="btn" onclick="toggleImage('i3')">Ver foto</button>
+  </div>
+  <img id="i3" class="foto" src="imagenes/sandwich-infantil.jpg" alt="Sándwich mixto infantil">
+</div>
+
+<!-- POSTRES -->
+<div id="postres" class="tab-content">
+  <h2>Postres</h2>
+
+  <div class="plato">
+    <span class="nombre">Tarta del Día</span>
+    <span class="price">4,95 €</span>
+    <button class="btn" onclick="toggleImage('po1')">Ver foto</button>
+  </div>
+  <img id="po1" class="foto" src="imagenes/tarta-dia.jpg" alt="Tarta del Día">
+
+  <div class="plato">
+    <span class="nombre">Brownie con helado</span>
+    <span class="price">4-5 €</span>
+    <button class="btn" onclick="toggleImage('po2')">Ver foto</button>
+  </div>
+  <img id="po2" class="foto" src="imagenes/brownie-helado.jpg" alt="Brownie con helado">
+
+  <div class="plato">
+    <span class="nombre">Tarta de queso</span>
+    <span class="price">4-5 €</span>
+    <button class="btn" onclick="toggleImage('po3')">Ver foto</button>
+  </div>
+  <img id="po3" class="foto" src="imagenes/tarta-queso.jpg" alt="Tarta de queso">
+</div>
+
+
+  
+<!-- HELADOS -->
+<div id="helados" class="tab-content">
+  <h2>Helados Haagen Dazs</h2>
+
+  <div class="plato">
+    <span class="nombre">Chocolate couche</span>
+    <span class="price">3,25 €</span>
+    <button class="btn" onclick="toggleImage('he1')">Ver foto</button>
+  </div>
+  <img id="he1" class="foto" src="imagenes/helado-chocolate.jpg" alt="Chocolate couche">
+
+  <div class="plato">
+    <span class="nombre">Vanilla Caramel Brownie</span>
+    <span class="price">3,25 €</span>
+    <button class="btn" onclick="toggleImage('he2')">Ver foto</button>
+  </div>
+  <img id="he2" class="foto" src="imagenes/helado-vanilla-caramel.jpg" alt="Vanilla Caramel Brownie">
+
+  <div class="plato">
+    <span class="nombre">Strawberry Cheesecake</span>
+    <span class="price">3,25 €</span>
+    <button class="btn" onclick="toggleImage('he3')">Ver foto</button>
+  </div>
+  <img id="he3" class="foto" src="imagenes/helado-strawberry.jpg" alt="Strawberry Cheesecake">
+
+  <div class="plato">
+    <span class="nombre">Dulce de Leche</span>
+    <span class="price">3,25 €</span>
+    <button class="btn" onclick="toggleImage('he4')">Ver foto</button>
+  </div>
+  <img id="he4" class="foto" src="imagenes/helado-dulce-leche.jpg" alt="Dulce de Leche">
+
+  <div class="plato">
+    <span class="nombre">Cookie Dough Chip</span>
+    <span class="price">3,25 €</span>
+    <button class="btn" onclick="toggleImage('he5')">Ver foto</button>
+  </div>
+  <img id="he5" class="foto" src="imagenes/helado-cookie-dough.jpg" alt="Cookie Dough Chip">
+</div>
+
+<!-- BEBIDAS -->
+<div id="bebidas" class="tab-content">
+  <h2>Bebidas</h2>
+
+  <div class="plato">
+    <span class="nombre">Coca Cola</span>
+    <span class="price">1,90 €</span>
+    <button class="btn" onclick="toggleImage('be1')">Ver foto</button>
+  </div>
+  <img id="be1" class="foto" src="imagenes/coca-cola.jpg" alt="Coca Cola">
+
+  <div class="plato">
+    <span class="nombre">Coca Cola Zero</span>
+    <span class="price">1,50 €</span>
+    <button class="btn" onclick="toggleImage('be2')">Ver foto</button>
+  </div>
+  <img id="be2" class="foto" src="imagenes/coca-cola-zero.jpg" alt="Coca Cola Zero">
+
+  <div class="plato">
+    <span class="nombre">Coca Cola sin cafeína</span>
+    <span class="price">1,90 €</span>
+    <button class="btn" onclick="toggleImage('be3')">Ver foto</button>
+  </div>
+  <img id="be3" class="foto" src="imagenes/coca-cola-sin-cafeina.jpg" alt="Coca Cola sin cafeína">
+
+  <div class="plato">
+    <span class="nombre">Fanta Naranja</span>
+    <span class="price">1,90 €</span>
+    <button class="btn" onclick="toggleImage('be4')">Ver foto</button>
+  </div>
+  <img id="be4" class="foto" src="imagenes/fanta-naranja.jpg" alt="Fanta Naranja">
+
+  <div class="plato">
+    <span class="nombre">Fanta Limón</span>
+    <span class="price">1,90 €</span>
+    <button class="btn" onclick="toggleImage('be5')">Ver foto</button>
+  </div>
+  <img id="be5" class="foto" src="imagenes/fanta-limon.jpg" alt="Fanta Limón">
+
+  <div class="plato">
+    <span class="nombre">Aquarius Naranja</span>
+    <span class="price">1,90 €</span>
+    <button class="btn" onclick="toggleImage('be6')">Ver foto</button>
+  </div>
+  <img id="be6" class="foto" src="imagenes/aquarius-naranja.jpg" alt="Aquarius Naranja">
+
+  <div class="plato">
+    <span class="nombre">Aquarius Limón</span>
+    <span class="price">1,90 €</span>
+    <button class="btn" onclick="toggleImage('be7')">Ver foto</button>
+  </div>
+  <img id="be7" class="foto" src="imagenes/aquarius-limon.jpg" alt="Aquarius Limón">
+
+  <div class="plato">
+    <span class="nombre">Nestea</span>
+    <span class="price">1,50 €</span>
+    <button class="btn" onclick="toggleImage('be8')">Ver foto</button>
+  </div>
+  <img id="be8" class="foto" src="imagenes/nestea.jpg" alt="Nestea">
+
+  <div class="plato">
+    <span class="nombre">Agua 0,50 L</span>
+    <span class="price">1,90 €</span>
+    <button class="btn" onclick="toggleImage('be9')">Ver foto</button>
+  </div>
+  <img id="be9" class="foto" src="imagenes/agua.jpg" alt="Agua 0,50 L">
+
+  <div class="plato">
+    <span class="nombre">Cerveza Mahou Clásica</span>
+    <span class="price">2,00 €</span>
+    <button class="btn" onclick="toggleImage('be10')">Ver foto</button>
+  </div>
+  <img id="be10" class="foto" src="imagenes/mahou.jpg" alt="Cerveza Mahou Clásica">
+
+  <div class="plato">
+    <span class="nombre">Cerveza Laiker sin alcohol</span>
+    <span class="price">1,50 €</span>
+    <button class="btn" onclick="toggleImage('be11')">Ver foto</button>
+  </div>
+  <img id="be11" class="foto" src="imagenes/laiker.jpg" alt="Cerveza Laiker sin alcohol">
+</div>
+
+
+
+ <footer>
+        © 2025 Different Burguer · Illescas
+      </footer>
+    </div>
+
+    <img src="imagenes/cderecha.png" alt="Columna derecha" class="columna">
+  </div>
+</body>
+</html>                                                                                                                   
+                                                                                                                       
