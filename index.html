@@ -4,134 +4,39 @@
   <meta charset="UTF-8">
   <title>Carta Different Burguer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    /* ===== ESTILO NEUTRO TIPO COPILOT ===== */
+<style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
+    header { position: relative; background: url('https://via.placeholder.com/1200x320.png?text=Different+Burguer') no-repeat center; background-size: cover; height: 280px; display: flex; align-items: center; justify-content: center; }
+    header .overlay { background-color: rgba(192,57,43,0.85); padding: 24px 32px; text-align: center; border-radius: 10px; }
+    header h1 { font-size: 36px; margin: 0; color: #fff; }
+    header p { font-size: 14px; margin-top: 8px; color: #f4f4f4; }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #f5f6f7;
-  color: #1c1c1e;
-  margin: 0;
-  padding: 0;
-}
+    .top-controls { text-align: center; margin: 16px; }
+    .btn { padding: 6px 12px; background-color: #c0392b; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+    .btn:hover { background-color: #a93226; }
 
-/* Contenedor principal */
-.main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-}
+    .tabs { display: flex; flex-wrap: wrap; justify-content: center; background: #c0392b; }
+    .tabs button { flex: 1; min-width: 120px; padding: 12px; border: none; background: #c0392b; color: #fff; cursor: pointer; font-weight: bold; }
+    .tabs button:hover { background: #a93226; }
+    .tabs button.active { background: #e74c3c; }
 
-/* Header */
-header {
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-}
+    .tab-content { display: none; padding: 20px; max-width: 900px; margin: auto; }
+    .tab-content.active { display: block; }
 
-header h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #2c2c2e;
-}
+    .plato { display: flex; justify-content: space-between; align-items: center; margin: 10px 0; gap: 8px; flex-wrap: wrap; }
+    .nombre { font-weight: 600; }
+    .price { color: #27ae60; font-weight: 700; margin-left: auto; }
+    .foto { display: none; margin-top: 8px; width: 260px; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.18); }
 
-header p {
-  font-size: 1rem;
-  color: #6c6c70;
-}
+    footer { background-color: #f4f4f4; text-align: center; padding: 18px; font-size: 13px; color: #555; }
 
-/* Tabs */
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin: 20px 0;
-}
+    @media print {
+      .btn, .top-controls, header, .tabs { display: none !important; }
+      .foto { display: block !important; }
+      .tab-content { display: block !important; }
+    }
 
-.tabs button {
-  background: #ffffff;
-  border: 1px solid #d1d1d6;
-  border-radius: 8px;
-  padding: 8px 14px;
-  font-size: 0.95rem;
-  color: #1c1c1e;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.tabs button:hover {
-  background: #f0f0f5;
-  border-color: #bcbcc0;
-}
-
-/* Tarjetas de platos */
-.plato {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin: 10px 0;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-
-.plato .nombre {
-  font-weight: 500;
-  color: #1c1c1e;
-}
-
-.plato .price {
-  font-weight: 600;
-  color: #007aff;
-}
-
-/* Botones */
-.btn {
-  background: #007aff;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.btn:hover {
-  background: #0062cc;
-}
-
-/* Fotos */
-.foto {
-  display: none;
-  width: 100%;
-  border-radius: 10px;
-  margin: 10px 0 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-/* Secciones */
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #6c6c70;
-  font-size: 0.9rem;
-}
-
+    
   </style>
   <script>
     function openTab(evt, tabId) {
