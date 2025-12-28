@@ -1,121 +1,111 @@
-/* Crystal iOS base */
+/* ===== ESTILO NEUTRO TIPO COPILOT ===== */
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: linear-gradient(135deg, #f5f7fb, #ffffff);
-  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #f5f6f7;
+  color: #1c1c1e;
   margin: 0;
   padding: 0;
 }
 
-/* Contenedor principal opcional para centrar */
+/* Contenedor principal */
 .main {
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 20px;
 }
 
-/* Header estilo tarjeta translúcida */
+/* Header */
 header {
-  background: rgba(255, 255, 255, 0.6);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 24px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
 header h1 {
-  font-weight: 600;
   font-size: 2rem;
-  color: #007aff;
+  font-weight: 600;
+  color: #2c2c2e;
 }
 
 header p {
-  font-weight: 300;
-  color: #555;
+  font-size: 1rem;
+  color: #6c6c70;
 }
 
-/* Tabs estilo iOS */
+/* Tabs */
 .tabs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   margin: 20px 0;
 }
 
 .tabs button {
-  background: rgba(255,255,255,0.7);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: none;
-  border-radius: 12px;
-  padding: 10px 18px;
-  font-size: 1rem;
-  color: #007aff;
+  background: #ffffff;
+  border: 1px solid #d1d1d6;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  color: #1c1c1e;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: 0.2s ease;
 }
 
 .tabs button:hover {
-  background: rgba(0,122,255,0.18);
-  color: #007aff;
+  background: #f0f0f5;
+  border-color: #bcbcc0;
 }
 
-/* Items de la carta */
+/* Tarjetas de platos */
 .plato {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  background: rgba(255,255,255,0.6);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  padding: 12px 18px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 14px 18px;
   margin: 10px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
 .plato .nombre {
   font-weight: 500;
+  color: #1c1c1e;
 }
 
 .plato .price {
-  font-weight: 500;
+  font-weight: 600;
   color: #007aff;
 }
 
-/* Botones de acción */
+/* Botones */
 .btn {
   background: #007aff;
-  color: #fff;
+  color: #ffffff;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 8px 14px;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.1s ease;
-  box-shadow: 0 6px 14px rgba(0,122,255,0.25);
+  transition: 0.2s ease;
 }
 
 .btn:hover {
-  background: #005ecb;
+  background: #0062cc;
 }
 
-.btn:active {
-  transform: scale(0.98);
-}
-
-/* Fotos desplegables */
+/* Fotos */
 .foto {
   display: none;
   width: 100%;
-  max-width: 900px;
-  border-radius: 16px;
-  margin: 8px 0 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  margin: 10px 0 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 /* Secciones */
@@ -130,7 +120,7 @@ header p {
 /* Footer */
 footer {
   text-align: center;
-  padding: 24px;
-  font-size: 0.95rem;
-  color: #666;
+  padding: 20px;
+  color: #6c6c70;
+  font-size: 0.9rem;
 }
